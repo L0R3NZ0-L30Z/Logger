@@ -89,8 +89,8 @@ function App() {
 
   const handleNewLog = (newLog) => {
     setLogs((prevLogs) => {
-      const updatedLogs = [newLog, ...prevLogs];  
-      localStorage.setItem("logs", JSON.stringify(updatedLogs)); 
+      const updatedLogs = [newLog, ...prevLogs];
+      localStorage.setItem("logs", JSON.stringify(updatedLogs));
       return updatedLogs;
     });
   };
@@ -105,13 +105,15 @@ function App() {
             placeholder="Enter Local IP"
             value={inputIp}
             onChange={handleIpChange}
-            onKeyDown={handleKeyPress} 
+            onKeyDown={handleKeyPress}
           />
-          <button onClick={setIp} className="set-ip-btn">Set IP</button>
-        </div>
-        <button onClick={downloadLogs} className="download-btn">
-          Download Logs
-        </button>
+          
+            <button onClick={setIp} className="set-ip-btn">Set IP</button>
+          </div>
+          <button onClick={downloadLogs} className="download-btn">
+            Download Logs
+          </button>
+        
       </div>
       {logs.length > 0 || error.length > 0 ? (
         <div className="log-container">
