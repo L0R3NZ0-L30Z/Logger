@@ -9,16 +9,23 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    // Load logs from localStorage
     const storedLogs = localStorage.getItem("logs");
     if (storedLogs) {
       setLogs(JSON.parse(storedLogs));
     }
 
+    // Load IP address from localStorage
+    const storedIp = localStorage.getItem("localIp");
+    if (storedIp) {
+      setLocalIp(storedIp);
+      setInputIp(storedIp); // Set the input field to the stored IP
+    }
   }, []);
 
   useEffect(() => {
     if (localIp) {
-      const newSocket = new WebSocket(`ws://${localIp}`);
+      const newSocket = new WebSocket(localIp);
 
       newSocket.onopen = () => {
         console.log("Connected to WebSocket");
@@ -59,7 +66,7 @@ function App() {
 
   const clearLogs = () => {
     setLogs([]);
-    setError([]);
+    setError("");
     localStorage.removeItem("logs");
   };
 
@@ -68,7 +75,7 @@ function App() {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter') {
       setIp();
     }
   };
@@ -76,14 +83,14 @@ function App() {
   const setIp = () => {
     setLocalIp(inputIp);
     setError("");
-    setLogs([]);  // Clear logs on IP change
-    localStorage.removeItem("logs");  // Clear stored logs when IP changes
+    setLogs([]);
+    localStorage.setItem("localIp", inputIp); // Store the IP address in localStorage
   };
 
   const handleNewLog = (newLog) => {
     setLogs((prevLogs) => {
-      const updatedLogs = [newLog, ...prevLogs];  // Add new log at the top
-      localStorage.setItem("logs", JSON.stringify(updatedLogs));  // Save logs in localStorage
+      const updatedLogs = [newLog, ...prevLogs];  
+      localStorage.setItem("logs", JSON.stringify(updatedLogs)); 
       return updatedLogs;
     });
   };
@@ -98,7 +105,7 @@ function App() {
             placeholder="Enter Local IP"
             value={inputIp}
             onChange={handleIpChange}
-            onKeyDown={handleKeyPress}  // Capture Enter and Spacebar key presses
+            onKeyDown={handleKeyPress} 
           />
           <button onClick={setIp} className="set-ip-btn">Set IP</button>
         </div>
@@ -120,7 +127,7 @@ function App() {
         <div />
       )}
       <div className="footer">
-        <p>La Salle Florida Robotics Team - Desing By Leoz</p>
+        <p>La Salle Florida Robotics Team - Designed By Leoz</p>
       </div>
     </div>
   );
