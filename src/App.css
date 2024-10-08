@@ -1,14 +1,18 @@
 body{
   background-color: #21201d;
+  height: 100%; 
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .App {
   font-family: calibri, sans-serif;
   text-align: center;
-  margin: 20px;
+  height: 100%; 
 }
 
 h1 {
+  letter-spacing: 2px;
   color: #ebe5d3;
 }
 
@@ -51,7 +55,7 @@ input {
   color: #21201d;
   font-weight: 500;
   font-family: calibri;
-  border-radius: 3rem;
+  border-radius: 1.5rem;
   max-height: 400px;
   overflow-y: auto;
   border: 1px solid #ccc;
@@ -59,16 +63,38 @@ input {
   margin: 20px auto;
   width: 80%;
   background-color: #f9f9f9;
+  transition: all 0.3s ease; 
 }
 
 .log-entry {
+  font-weight: 600;
+  font-size: 18px; 
+  font-family: calibri;
+  color: #21201d;
   padding: 5px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+  transition: all 0.3s ease; 
 }
 
 .error {
-  color: red;
+  font-weight: 600;
+  font-size: 18px; 
+  font-family: calibri;
+  color: #940000;
+}
+
+.clear-logs-btn{
+  height: 4px;
+  border-radius: 3rem;
+  background-color: #940000;
+  padding: 10px 20px;
+  height: 1px; 
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  border: 1px solid transparent; 
 }
 
 .download-btn {
@@ -86,7 +112,7 @@ input {
   display: flex;
   justify-content: center; 
   align-items: center;
-  margin: 20px;
+  margin-bottom: 20px;
 
 }
 
@@ -103,4 +129,18 @@ input {
   border-color: #ebe5d3; 
   background-color: #21201d; 
   color: #ebe5d3; 
+}
+.clear-logs-btn:hover{
+  border-color: #ebe5d3; 
+  background-color: #b90000; 
+  color: #ebe5d3; 
+}
+.footer{
+  width: 100%;
+  position: absolute; 
+  text-align: center;
+  bottom: 0;
+  color: #ebe5d350; 
+  padding: 20px;
+  
 }
