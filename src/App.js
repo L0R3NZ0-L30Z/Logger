@@ -9,17 +9,15 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // Load logs from localStorage
     const storedLogs = localStorage.getItem("logs");
     if (storedLogs) {
       setLogs(JSON.parse(storedLogs));
     }
 
-    // Load IP address from localStorage
     const storedIp = localStorage.getItem("localIp");
     if (storedIp) {
       setLocalIp(storedIp);
-      setInputIp(storedIp); // Set the input field to the stored IP
+      setInputIp(storedIp);
     }
   }, []);
 
@@ -82,8 +80,6 @@ function App() {
 
   const setIp = () => {
     setLocalIp(inputIp);
-    setError("");
-    setLogs([]);
     localStorage.setItem("localIp", inputIp); // Store the IP address in localStorage
   };
 
