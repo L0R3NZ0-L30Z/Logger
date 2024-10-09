@@ -14,7 +14,7 @@ function App() {
       setLogs(JSON.parse(storedLogs));
     }
 
-    const storedIp = localStorage.getItem("localIp");
+    const storedIp = localStorage.getItem(`ws://${localIp}`);;
     if (storedIp) {
       setLocalIp(storedIp);
       setInputIp(storedIp);
