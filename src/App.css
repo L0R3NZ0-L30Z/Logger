@@ -144,20 +144,12 @@ input {
 }
 
 .footer {
-  /* position: absolute; 
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ebe5d350;
-  display: inline; */
 
-    position: sticky;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    padding-top: 2rem;
+    bottom: 10%;
     color: #ebe5d350;
     text-align: center;
-    padding: 20px;
   
 
 }
@@ -169,7 +161,7 @@ input {
   }
 
   .log-container {
-    width: 70%;
+    width: 80%;
     padding: 8px;
   }
 
@@ -185,38 +177,47 @@ input {
   }
 
   .set-ip-btn{
-    margin-top: 15px;
-    width: 100rem;
+    box-sizing: border-box; 
+    margin-top: 20px;
+    width: 100%; 
   }
   .download-btn {
-    width: 100rem;
+    box-sizing: border-box; 
+    width: 100%; 
   }
 
-  .footer {
-    padding: 10px;
-  }
 }
 
 @media (max-width: 480px) {
   input {
-    width: 180px;
-    font-size: 14px;
+    width: 200px;
+    font-size: 16px;
   }
 
   .log-container {
-    width: 95%;
-    
+    width: 80%;
+    padding: 8px;
   }
 
   .log-entry {
-    font-size: 14px;
+    font-size: 16px;
   }
 
-  .set-ip-btn, .download-btn {
-    width: 100%;
+  #bar {
+    flex-direction: column;
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
   }
 
-  .footer {
-    font-size: 12px;
+  .set-ip-btn{
+    box-sizing: border-box; 
+    margin-top: 20px;
+    width: 100%; 
   }
+  .download-btn {
+    box-sizing: border-box; 
+    width: 100%; 
+  }
+
 }
