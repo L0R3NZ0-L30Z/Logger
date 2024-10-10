@@ -59,14 +59,14 @@ input {
   font-family: calibri;
   border-radius: 1.5rem;
   overflow-y: auto;
-  border: 1px solid #ebe5d3;
-  padding: 10px;
   margin: 20px auto;
   width: 80%;
   background-color: #ebe5d3;
   transition: all 0.3s ease;
   overflow-y: scroll;
   scrollbar-width: none;
+  padding: 0;
+
 }
 
 .log-container::-webkit-scrollbar {
@@ -78,25 +78,37 @@ input {
   font-size: 18px;
   font-family: calibri;
   color: #21201d;
-  padding: 5px;
+  padding: 15px;
   border-bottom: 1px solid #ebe5d3;
   text-align: left;
   transition: all 0.3s ease;
+}
+
+.log-entry:nth-child(odd) {
+  background-color: #ebe5d3; 
+  border-radius: 5rem;
+}
+
+.log-entry:nth-child(even) {
+  background-color: #d8d3c2;
+  border-radius: 1.5rem;
 }
 
 .error {
   font-weight: 600;
   font-size: 18px;
   font-family: calibri;
+  padding: 15px;
   color: #940000;
 }
 
 .clear-logs-btn {
   border-radius: 3rem;
   background-color: #940000;
+  margin: 5px;
   padding: 10px 20px;
   height: 1px;
-  width: 100%;
+  width: 90%;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -142,6 +154,7 @@ input {
   border-color: #ebe5d3;
   background-color: #b90000;
   color: #ebe5d3;
+  width: 89.5%;
 }
 
 .footer {

@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (localIp) {
-      const sseUrl = `http://${localIp}`; 
+      const sseUrl = localIp; 
 
       const newEventSource = new EventSource(sseUrl);
   
