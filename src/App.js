@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 
-
 function App() {
   const [logs, setLogs] = useState([]);
   const [error, setError] = useState("");
@@ -18,32 +17,37 @@ function App() {
     const storedIp = localStorage.getItem("localIp");
     if (storedIp) {
       setLocalIp(storedIp);
-      setInputIp(storedIp);
+      setInputIp(storedIp); 
     }
   }, []);
 
   useEffect(() => {
     if (localIp) {
-      const newEventSource = new EventSource(`http://${localIp}/`);
+      const sseUrl = `http://${localIp}`; 
 
+      const newEventSource = new EventSource(sseUrl);
+  
       newEventSource.onopen = () => {
-        console.log("Connected to SSE");
+        console.log("Connected to SSE server");
       };
-
+  
       newEventSource.onmessage = (event) => {
         const newLog = event.data;
         handleNewLog(newLog);
       };
-
+  
       newEventSource.onerror = (err) => {
-        console.log("SSE error:", err);
-        setError("Error connecting to SSE:");
+        console.error("SSE error:", err);
+        setError("Error connecting to SSE.");
+        newEventSource.close(); 
       };
-
+  
       setEventSource(newEventSource);
-
+  
       return () => {
-        newEventSource.close();
+        if (newEventSource) {
+          newEventSource.close();
+        }
       };
     }
   }, [localIp]);
@@ -75,6 +79,8 @@ function App() {
 
   const setIp = () => {
     setLocalIp(inputIp);
+    setError("");
+    setLogs([]);
     localStorage.setItem("localIp", inputIp);
   };
 
@@ -98,12 +104,13 @@ function App() {
             onChange={handleIpChange}
             onKeyDown={handleKeyPress}
           />
-
-          <button onClick={setIp} className="set-ip-btn">Set IP</button>
-        </div>
-        <button onClick={downloadLogs} className="download-btn">
-          Download Logs
-        </button>
+          
+            <button onClick={setIp} className="set-ip-btn">Set IP</button>
+          </div>
+          <button onClick={downloadLogs} className="download-btn">
+            Download Logs
+          </button>
+        
       </div>
       {logs.length > 0 || error.length > 0 ? (
         <div className="log-container">
@@ -119,7 +126,7 @@ function App() {
         <div />
       )}
       <div className="footer">
-        <p>La Salle Florida Robotics Team - Designed By Leoz</p>
+        <p><a href="https://github.com/La-Salle-Florida/Logger-Leguizard" class="custom-link">La Salle Florida Robotics Team</a> - Designed By <a href="https://github.com/L0R3NZ0-L30Z" class="custom-link">Lorenzo Leoz</a></p>
       </div>
     </div>
   );

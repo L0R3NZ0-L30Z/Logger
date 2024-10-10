@@ -59,15 +59,16 @@ input {
   font-family: calibri;
   border-radius: 1.5rem;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #ebe5d3;
   padding: 10px;
   margin: 20px auto;
   width: 80%;
-  background-color: #f9f9f9;
+  background-color: #ebe5d3;
   transition: all 0.3s ease;
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
 .log-container::-webkit-scrollbar {
   display: none;
 }
@@ -78,7 +79,7 @@ input {
   font-family: calibri;
   color: #21201d;
   padding: 5px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ebe5d3;
   text-align: left;
   transition: all 0.3s ease;
 }
@@ -145,13 +146,22 @@ input {
 
 .footer {
 
-    width: 100%;
-    padding-top: 2rem;
-    bottom: 10%;
-    color: #ebe5d350;
-    text-align: center;
-  
+  width: 100%;
+  padding-top: 2rem;
+  bottom: 10%;
+  color: #ebe5d350;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
 
+.custom-link {
+  color: #ebe5d350;
+  text-decoration: none;
+}
+
+.custom-link:hover {
+  color: #297fb9c0;
 }
 
 @media (max-width: 768px) {
@@ -176,14 +186,15 @@ input {
     margin-left: 10%;
   }
 
-  .set-ip-btn{
-    box-sizing: border-box; 
+  .set-ip-btn {
+    box-sizing: border-box;
     margin-top: 20px;
-    width: 100%; 
+    width: 100%;
   }
+
   .download-btn {
-    box-sizing: border-box; 
-    width: 100%; 
+    box-sizing: border-box;
+    width: 100%;
   }
 
 }
@@ -210,14 +221,15 @@ input {
     margin-left: 10%;
   }
 
-  .set-ip-btn{
-    box-sizing: border-box; 
+  .set-ip-btn {
+    box-sizing: border-box;
     margin-top: 20px;
-    width: 100%; 
+    width: 100%;
   }
+
   .download-btn {
-    box-sizing: border-box; 
-    width: 100%; 
+    box-sizing: border-box;
+    width: 100%;
   }
 
 }
