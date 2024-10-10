@@ -6,7 +6,7 @@ function App() {
   const [error, setError] = useState("");
   const [localIp, setLocalIp] = useState("");
   const [inputIp, setInputIp] = useState("");
-  const [socket, setSocket] = useState(null);
+  const [eventSource, setEventSource] = useState(null);
 
   useEffect(() => {
     const storedLogs = localStorage.getItem("logs");
@@ -14,7 +14,7 @@ function App() {
       setLogs(JSON.parse(storedLogs));
     }
 
-    const storedIp = localStorage.getItem(`ws://${localIp}`);;
+    const storedIp = localStorage.getItem("localIp");
     if (storedIp) {
       setLocalIp(storedIp);
       setInputIp(storedIp);
@@ -23,32 +23,26 @@ function App() {
 
   useEffect(() => {
     if (localIp) {
-      const newSocket = new WebSocket(localIp);
+      const newEventSource = new EventSource(`http://${localIp}/`);
 
-      newSocket.onopen = () => {
-        console.log("Connected to WebSocket");
+      newEventSource.onopen = () => {
+        console.log("Connected to SSE");
       };
 
-      newSocket.onmessage = (event) => {
+      newEventSource.onmessage = (event) => {
         const newLog = event.data;
         handleNewLog(newLog);
       };
 
-      newSocket.onerror = (err) => {
-        console.error("WebSocket error:", err);
-        setError("Error connecting to WebSocket.");
+      newEventSource.onerror = (err) => {
+        console.log("SSE error:", err);
+        setError("Error connecting to SSE:");
       };
 
-      newSocket.onclose = () => {
-        console.log("WebSocket connection closed");
-      };
-
-      setSocket(newSocket);
+      setEventSource(newEventSource);
 
       return () => {
-        if (newSocket.readyState === WebSocket.OPEN) {
-          newSocket.close();
-        }
+        newEventSource.close();
       };
     }
   }, [localIp]);
@@ -80,7 +74,7 @@ function App() {
 
   const setIp = () => {
     setLocalIp(inputIp);
-    localStorage.setItem("localIp", inputIp); // Store the IP address in localStorage
+    localStorage.setItem("localIp", inputIp);
   };
 
   const handleNewLog = (newLog) => {
@@ -103,13 +97,12 @@ function App() {
             onChange={handleIpChange}
             onKeyDown={handleKeyPress}
           />
-          
-            <button onClick={setIp} className="set-ip-btn">Set IP</button>
-          </div>
-          <button onClick={downloadLogs} className="download-btn">
-            Download Logs
-          </button>
-        
+
+          <button onClick={setIp} className="set-ip-btn">Set IP</button>
+        </div>
+        <button onClick={downloadLogs} className="download-btn">
+          Download Logs
+        </button>
       </div>
       {logs.length > 0 || error.length > 0 ? (
         <div className="log-container">
