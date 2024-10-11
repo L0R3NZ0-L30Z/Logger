@@ -11,7 +11,7 @@
 
 - #### Enable 'Unsafe content' in Chrome:
     - #### For Mobile:
-        - #### Click on this [LINK](chrome://flags/#unsafely-treat-insecure-origin-as-secure) and enable 'Insecure origins', then add the local IP of the Esp32 to the box.
+        - #### Click on this link ::chrome://flags/#unsafely-treat-insecure-origin-as-secure:: and enable 'Insecure origins', then add the local IP of the Esp32 to the box.
         - #### Restart the browser.
     - #### For PC:
         - #### Click on the Lock in the top-left corner of the page, next to the searchbar, and go to settings.
