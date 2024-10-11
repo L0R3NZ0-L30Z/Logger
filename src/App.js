@@ -143,7 +143,7 @@ function App() {
         <div />
       )}
       <div className="footer">
-        <h3><a href="https://github.com/La-Salle-Florida/Logger-Leguizard" className="custom-link">La Salle Florida Robotics Team</a></h3>
+        <h3><a href="https://github.com/La-Salle-Florida/Logger-ESP32" className="custom-link">La Salle Florida Robotics Team</a></h3>
         <p>Designed By <a href="https://github.com/L0R3NZ0-L30Z" className="custom-link">Lorenzo Leoz</a></p>
       </div>
     </div>
