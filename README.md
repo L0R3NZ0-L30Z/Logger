@@ -7,11 +7,11 @@
 
 ### How to Set Up:
 
-#### This logger wont work out of the box, you will have to make some adjustments due to chrome "secure" features.
+#### This logger won't work out of the box, you will have to make some adjustments due to chrome "secure" features.
 
 - #### Enable 'Unsafe content' in Chrome:
     - #### For Mobile:
-        - #### Click on this link ::chrome://flags/#unsafely-treat-insecure-origin-as-secure:: and enable 'Insecure origins', then add the local IP of the Esp32 to the box.
+        - #### Click on this link `chrome://flags/#unsafely-treat-insecure-origin-as-secure` and enable 'Insecure origins', then add the local IP of the Esp32 to the box.
         - #### Restart the browser.
     - #### For PC:
         - #### Click on the Lock in the top-left corner of the page, next to the searchbar, and go to settings.
