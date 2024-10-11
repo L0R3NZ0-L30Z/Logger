@@ -17,33 +17,46 @@ function App() {
     const storedIp = localStorage.getItem("localIp");
     if (storedIp) {
       setLocalIp(storedIp);
-      setInputIp(storedIp); 
+      setInputIp(storedIp);
     }
   }, []);
 
   useEffect(() => {
     if (localIp) {
-      const sseUrl = localIp; 
+      const sseUrl = localIp;
+
+      console.log(sseUrl);
 
       const newEventSource = new EventSource(sseUrl);
-  
-      newEventSource.onopen = () => {
-        console.log("Connected to SSE server");
-      };
-  
+      
+
+      
       newEventSource.onmessage = (event) => {
-        const newLog = event.data;
-        handleNewLog(newLog);
+        console.log("Received message:", event.data);
+        
+        try {
+          const newLog = event.data; 
+          console.log("Parsed log:", newLog); 
+          handleNewLog(newLog);
+        } catch (error) {
+          console.error("Error parsing log:", error);
+          console.error("Raw data:", event.data); 
+        }
       };
-  
+      
       newEventSource.onerror = (err) => {
         console.error("SSE error:", err);
         setError("Error connecting to SSE.");
-        newEventSource.close(); 
+        newEventSource.close();
       };
-  
+      
+      newEventSource.onopen = () => {
+        console.log("Connected to SSE server");
+        setError("");
+      };
+      
       setEventSource(newEventSource);
-  
+      
       return () => {
         if (newEventSource) {
           newEventSource.close();
@@ -79,12 +92,16 @@ function App() {
 
   const setIp = () => {
     setLocalIp(inputIp);
+    if (!inputIp.startsWith("http://")) {
+      setLocalIp("http://" + inputIp);
+    }
     setError("");
     setLogs([]);
     localStorage.setItem("localIp", inputIp);
   };
 
   const handleNewLog = (newLog) => {
+    console.log(newLog);
     setLogs((prevLogs) => {
       const updatedLogs = [newLog, ...prevLogs];
       localStorage.setItem("logs", JSON.stringify(updatedLogs));
@@ -94,7 +111,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Logs Viewer</h1>
+      <h1 className="title">Logs Viewer</h1>
       <div id="bar">
         <div className="input-section">
           <input
@@ -104,13 +121,13 @@ function App() {
             onChange={handleIpChange}
             onKeyDown={handleKeyPress}
           />
-          
-            <button onClick={setIp} className="set-ip-btn">Set IP</button>
-          </div>
-          <button onClick={downloadLogs} className="download-btn">
-            Download Logs
-          </button>
-        
+
+          <button onClick={setIp} className="set-ip-btn">Set IP</button>
+        </div>
+        <button onClick={downloadLogs} className="download-btn">
+          Download Logs
+        </button>
+
       </div>
       {logs.length > 0 || error.length > 0 ? (
         <div className="log-container">
@@ -126,7 +143,8 @@ function App() {
         <div />
       )}
       <div className="footer">
-        <p><a href="https://github.com/La-Salle-Florida/Logger-Leguizard" class="custom-link">La Salle Florida Robotics Team</a> - Designed By <a href="https://github.com/L0R3NZ0-L30Z" class="custom-link">Lorenzo Leoz</a></p>
+        <h3><a href="https://github.com/La-Salle-Florida/Logger-Leguizard" className="custom-link">La Salle Florida Robotics Team</a></h3>
+        <p>Designed By <a href="https://github.com/L0R3NZ0-L30Z" className="custom-link">Lorenzo Leoz</a></p>
       </div>
     </div>
   );

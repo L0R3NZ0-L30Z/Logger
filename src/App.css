@@ -14,9 +14,28 @@ body {
   flex: 1;
 }
 
-h1 {
+.title {
+  text-decoration: none;
+  font-size: 40px;
   letter-spacing: 2px;
   color: #ebe5d3;
+  transition: 0.3s ease-out;
+  
+}
+.title:hover{
+  text-decoration: none;
+  color: #b1ada0;
+}
+h3 {
+  font-size: 19px;
+  padding: 0;
+  padding-bottom: 5px;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
 }
 
 .input-section {
@@ -158,14 +177,14 @@ input {
 }
 
 .footer {
-
   width: 100%;
-  padding-top: 2rem;
-  bottom: 10%;
+  bottom: 0;
+  height: 20px;
   color: #ebe5d350;
   text-align: center;
   font-weight: 600;
   letter-spacing: 1.5px;
+  display: inline-block;
 }
 
 .custom-link {
