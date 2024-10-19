@@ -89,8 +89,7 @@ function App() {
   };
 
   const setIp = () => {
-    const formattedIp = inputIp.startsWith("http://") ? inputIp : "http://" + inputIp;
-    setLocalIp(formattedIp);
+    setLocalIp(inputIp);
     setError("");
     setLogs([]);
     localStorage.setItem("localIp", formattedIp);
