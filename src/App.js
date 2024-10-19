@@ -127,13 +127,14 @@ function App() {
       </div>
       {logs.length > 0 || error.length > 0 ? (
         <div className="log-container">
+          <button onClick={clearLogs} className="clear-logs-btn"></button>
+
           {error && <div className="error">{error}</div>}
           {logs.map((log, index) => (
             <div key={index} className="log-entry">
               {log}
             </div>
           ))}
-          <button onClick={clearLogs} className="clear-logs-btn"></button>
         </div>
       ) : (
         <div />
@@ -147,26 +148,3 @@ function App() {
 }
 
 export default App;
-
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Side Events</title>
-    <style>
-        body {
-            font-family: Calibri;
-            background-color: #21201d;
-        }
-        h1{
-          font-weight
-        }
-        
-    </style>
-</head>
-<body>
-    <h1>ESP server</h1>
-    <h3>To acces the Events got to /events</h3>
-</body>
-</html>
-
