@@ -28,35 +28,33 @@ function App() {
       console.log(sseUrl);
 
       const newEventSource = new EventSource(sseUrl);
-      
 
-      
       newEventSource.onmessage = (event) => {
         console.log("Received message:", event.data);
-        
+
         try {
-          const newLog = event.data; 
-          console.log("Parsed log:", newLog); 
+          const newLog = event.data;
+          console.log("Parsed log:", newLog);
           handleNewLog(newLog);
         } catch (error) {
           console.error("Error parsing log:", error);
-          console.error("Raw data:", event.data); 
+          console.error("Raw data:", event.data);
         }
       };
-      
+
       newEventSource.onerror = (err) => {
         console.error("SSE error:", err);
         setError("Error connecting to SSE.");
         newEventSource.close();
       };
-      
+
       newEventSource.onopen = () => {
         console.log("Connected to SSE server");
         setError("");
       };
-      
+
       setEventSource(newEventSource);
-      
+
       return () => {
         if (newEventSource) {
           newEventSource.close();
@@ -91,13 +89,11 @@ function App() {
   };
 
   const setIp = () => {
-    setLocalIp(inputIp);
-    if (!inputIp.startsWith("http://")) {
-      setLocalIp("http://" + inputIp);
-    }
+    const formattedIp = inputIp.startsWith("http://") ? inputIp : "http://" + inputIp;
+    setLocalIp(formattedIp);
     setError("");
     setLogs([]);
-    localStorage.setItem("localIp", inputIp);
+    localStorage.setItem("localIp", formattedIp);
   };
 
   const handleNewLog = (newLog) => {
@@ -111,6 +107,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <h1 className="title">Logs Viewer</h1>
       <div id="bar">
         <div className="input-section">
