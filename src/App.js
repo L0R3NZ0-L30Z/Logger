@@ -92,7 +92,7 @@ function App() {
     setLocalIp(inputIp);
     setError("");
     setLogs([]);
-    localStorage.setItem("localIp", formattedIp);
+    localStorage.setItem("localIp", inputIp);
   };
 
   const handleNewLog = (newLog) => {
